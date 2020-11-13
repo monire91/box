@@ -11,5 +11,12 @@
     "next": "10.0.1",
     "react": "17.0.1",
     "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "axios": "^0.21.0",
+    "postcss-preset-env": "^6.7.0",
+    "tailwindcss": "^1.9.6",
+    "react-cookie": "^4.0.3",
+    "swr": "^0.3.8"
   }
 }

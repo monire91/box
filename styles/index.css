@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+
+@font-face {
+    font-family: 'dana';
+    src: local('dana'), url("/fonts/ttf/dana-fanum-black.ttf") format('ttf');
+}
+
+.rtl{
+    direction: rtl;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+@tailwind utilities;
+
+/*@font-face {*/
+/*    font-family: "dana";*/
+/*    src: url("/fonts/eot/dana-fanum-black.eot") format("eot"),*/
+/*    url("/fonts/ttf/dana-fanum-black.ttf") format("ttf"),*/
+/*    url("/fonts/woff/dana-fanum-black.woff") format("woff"),*/
+/*    url("/fonts/woff2/dana-fanum-black.woff2") format("woff2"),*/
+/*}*/
+
+/*@font-face {*/
+/*    font-family: "dana-bold";*/
+/*    src: url("/fonts/eot/dana-fanum-bold.eot") format("eot"),*/
+/*    url("/fonts/ttf/dana-fanum-bold.ttf") format("ttf"),*/
+/*    url("/fonts/woff/dana-fanum-bold.woff") format("woff"),*/
+/*    url("/fonts/woff2/dana-fanum-bold.woff2") format("woff2"),*/
+/*}*/
+
+
+.navItem {
+    @apply cursor-pointer mx-4 border-primary border-solid
+}
+
+.navItem:hover {
+    @apply border-b-4 text-primary
+}
+

@@ -2,7 +2,6 @@ import Link from "next/link";
 import Profile from "./profile";
 
 export default function Navbar({page}) {
-    console.log(page)
     return (
         <nav className='py-4 w-full grid grid-cols-3 xl:grid-cols-4 absolute top-0 z-10'>
             <div className='col-span-1 xl:flex hidden justify-end items-center cursor-pointer'>

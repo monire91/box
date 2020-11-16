@@ -1,21 +1,19 @@
 import Link from "next/link";
 import {useCookies} from 'react-cookie';
 import {useAuth} from '../hooks/useAuth'
-import axios from 'axios'
-import {useEffect, useState} from "react";
+import {useState} from "react";
+import APIHelper from '../apiHelper'
 
 export default function Profile({page}) {
     const [cookies, setCookie] = useCookies(['Authorization']);
     const fetcher = url => {
-        // setCookie('Authorization', 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJtYXJrZXRfbWFuYWdlcl92MiIsImV4cCI6MTYwNTc3MTU5MywiaWF0IjoxNjAzMzUyMzkzLCJpc3MiOiJtYXJrZXRfbWFuYWdlcl92MiIsImp0aSI6IjEwMWM3YjEyLTA4MmEtNDE2ZS04MDE3LWI5ODk3YWE5NTA1ZCIsIm5iZiI6MTYwMzM1MjM5Miwic3ViIjoiMSIsInR5cCI6ImFjY2VzcyJ9.gAhY70Qpj58KHRLwlzH7Uq28esuRtRcXGiUg_nr-P0apqq7gbTzlvKI4-dT5cxr5I3T8SSvjdi7eGjK92rPjxw')
-        const data = {};
-        const options = {
+        const request = {
+            data: {},
             method: 'GET',
             headers: {'Authorization': `Bearer ${cookies['Authorization']}`},
-            data: data,
-            url,
+            url
         };
-        return axios(options);
+        return APIHelper(request);
     };
     const {data, error} = useAuth("/api/users/my", fetcher);
 

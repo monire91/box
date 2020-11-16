@@ -1,22 +1,34 @@
 import Head from 'next/head'
 import React, {useState} from "react";
 import Navbar from "../../components/navbar";
+import apiHelper from "../../apiHelper";
+import Mobile from "../../components/auth/mobile";
+import Code from "../../components/auth/code";
+import Name from "../../components/auth/name";
 
-// This gets called on every request
-export async function getServerSideProps() {
-    // Fetch data from external API
-    const res = await fetch(`https://api2.subkhoone.com/api/users/one_time_password/new`)
-    const data = await res.json()
+// export async function getServerSideProps() {
+//     const rawResponse = await fetch('https://api2.subkhoone.com/api/users/one_time_password/new', {
+//         method: 'POST',
+//         headers: {
+//             'Accept': 'application/json',
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({phone_number: "989104924319"})
+//     });
+//     const posts = await rawResponse.json();
+//     return {
+//         props: {
+//             results: posts,
+//         }
+//     }
+// }
 
-    // Pass data to the page via props
-    return {props: {data}}
-}
+function Login(props) {
 
-function Login({data}) {
     const [phoneNumber, setPhoneNumber] = useState('');
-    const handleChange = (e) => {
-        setPhoneNumber(e.target.value)
-    };
+    const [step, setStep] = useState(0);
+
+    console.log('step', step)
     return (
         <div className='font-dana'>
             <Head>
@@ -28,31 +40,25 @@ function Login({data}) {
                 <div className='flex absolute right-0 justify-end'>
                     <div className='flex-1'>
                     </div>
-                    <div className=' overflow-hidden'>
+                    <div className='sm:block hidden overflow-hidden'>
                         <img
                             alt='building'
                             src="/img/login.7531521154f799b3e72b9209676c370d.png"
                         />
                     </div>
-                    <div className='absolute pl-10 pr-40 text-right pt-40 bg-white h-full w-2/5 left-0'>
+                    <div className='sm:absolute fixed pl-10 xl:pr-40 pr-10 text-right pt-40 bg-white h-full w-full sm:w-2/5 left-0'>
                         <p className='pt-4 pb-4 text-4xl'>ورود</p>
-                        <p className='rtl mb-8'>تمام فیلد ها را به صورت صحیح وارد کنید.</p>
+                        <p className='rtl mb-8 aaa'>تمام فیلد ها را به صورت صحیح وارد کنید.</p>
                         <form>
-                            <div className="border-neutral  border rounded bg-white rounded-lg mb-4 p-4">
-                                <p className='text-gray-700'>موبایل</p>
-                                <input
-                                    onChange={handleChange}
-                                    className="text-right appearance-none text-gray-700 text-xl leading-tight focus:outline-none "
-                                    type="number" placeholder="موبایل"/>
-                            </div>
-                            <button
-                                className="block w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl focus:outline-none focus:shadow-outline"
-                                type="button">
-                                دریافت کد
-                            </button>
+                            {step === 0 &&
+                            <Mobile setPhoneNumber={setPhoneNumber} phoneNumber={phoneNumber} setStep={setStep}/>}
+                            {step === 1 &&
+                            <Code phoneNumber={phoneNumber} setStep={setStep}/>}
+                            {step === 2 &&
+                            <Name setPhoneNumber={setPhoneNumber} phoneNumber={phoneNumber} setStep={setStep}/>}
                         </form>
                     </div>
-                    <img className='absolute left-40% h-full'
+                    <img className='sm:block hidden absolute left-40% h-full'
                          alt='divider'
                          src="/img/login.svg"
                     />

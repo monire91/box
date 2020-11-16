@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import apiHelper from "../../apiHelper";
 import {useCookies} from "react-cookie";
+import {useRouter} from 'next/router'
 
-const Name = ({setPhoneNumber, phoneNumber, setStep}) => {
-
+const Name = ({phoneNumber, setStep}) => {
+    const router = useRouter()
     const [cookies, setCookie] = useCookies(['Authorization']);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -20,24 +21,23 @@ const Name = ({setPhoneNumber, phoneNumber, setStep}) => {
         e.preventDefault();
         const request = {
             data: {
-                user: {
-                    first_name: firstName, last_name: lastName
+                "user": {
+                    "first_name": firstName,
+                    "last_name": lastName,
+                    "phone_number": phoneNumber
                 }
             },
             headers: {'Authorization': `Bearer ${cookies['Authorization']}`},
-            method: 'POST',
+            method: 'PUT',
             url: 'https://api2.subkhoone.com/api/users/my/update'
         };
-        console.log(request)
         const result = apiHelper(request);
         result.then(res => {
             console.log('name', res);
-            if (res.status === 201) {
-                setStep(prevState => prevState + 1)
-            }
+            router.push('/')
 
         }).catch(err => {
-            console.log(err)
+            console.log('cant update user')
         })
     };
     return (

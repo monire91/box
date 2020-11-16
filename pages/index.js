@@ -1,19 +1,19 @@
 import Head from 'next/head'
 import React from "react";
 import Link from 'next/link'
-import Navbar from "../components/navbar";
+import Navbar from "../components/navbar/navbar";
 
 
 export default function Home() {
     return (
-        <div className='font-dana'>
+        <div>
             <Head>
                 <title>subkhoone</title>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
 
             <main>
-                <Navbar page='home'/>
+                <Navbar page='home' activeItem={4}/>
                 <div className='relative'>
                     <img
                         alt='building'

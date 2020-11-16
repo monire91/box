@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import React, {useState} from "react";
-import Navbar from "../../components/navbar";
+import Navbar from "../../components/navbar/navbar";
 import apiHelper from "../../apiHelper";
 import Mobile from "../../components/auth/mobile";
 import Code from "../../components/auth/code";
@@ -36,7 +36,7 @@ function Login(props) {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <main>
-                <Navbar page='login'/>
+                <Navbar page='login' activeItem={4}/>
                 <div className='flex absolute right-0 justify-end'>
                     <div className='flex-1'>
                     </div>
@@ -55,7 +55,7 @@ function Login(props) {
                             {step === 1 &&
                             <Code phoneNumber={phoneNumber} setStep={setStep}/>}
                             {step === 2 &&
-                            <Name setPhoneNumber={setPhoneNumber} phoneNumber={phoneNumber} setStep={setStep}/>}
+                            <Name phoneNumber={phoneNumber} setStep={setStep}/>}
                         </form>
                     </div>
                     <img className='sm:block hidden absolute left-40% h-full'

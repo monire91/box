@@ -51,7 +51,7 @@ export default function Profile({page}) {
 
     return (
         data && <div className='flex items-center'>
-            <div className='mr-4'>
+            <div className='mr-4 text-right'>
                 <span className='text-base'>{data.data.data.last_name}</span>
                 <span className='text-base inline-block ml-1'>{data.data.data.first_name}</span>
                 <p className='text-base text-right'>{data.data.data.balance}</p>

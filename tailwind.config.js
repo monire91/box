@@ -6,16 +6,12 @@ module.exports = {
     purge: [],
     theme: {
         extend: {
-            // fontFamily: {
-            //     dana: ['dana'],
-            //     'dana-bold': ['dana-bold'],
-            // },
             fontFamily: {
-                lobster: ['Lobster']
+                lobster: ['Lobster'],
             },
             colors:{
                 primary: '#1388e6',
-                secondary: '#ecc94b',
+                secondary: '#1abb9c',
                 neutral: '#ebebeb',
             },
             inset: {
@@ -24,6 +20,6 @@ module.exports = {
             }
         },
     },
-    variants: {},
+    variants: {height: ['hover']},
     plugins: [],
 }

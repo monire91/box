@@ -1,11 +1,6 @@
 @tailwind base;
 @tailwind components;
 
-@font-face {
-    font-family: 'dana';
-    src: local('dana'), url("/fonts/ttf/dana-fanum-black.ttf") format('ttf');
-}
-
 .rtl{
     direction: rtl;
 }
@@ -46,10 +41,9 @@ input[type=number] {
 }
 
 .navItem {
-    @apply cursor-pointer mx-4 border-primary border-solid
+    @apply cursor-pointer mx-4 border-primary border-solid opacity-50
 }
 
-.navItem:hover {
-    @apply border-b-4 text-primary
+.navItem-active {
+    @apply cursor-pointer mx-4 border-primary border-solid border-b-4 text-primary
 }
-

@@ -40,6 +40,10 @@ input[type=number] {
 /*    url("/fonts/woff2/dana-fanum-bold.woff2") format("woff2"),*/
 /*}*/
 
+@font-face {
+    font-family: 'Lobster';
+    src: url(https://subkhoone.com/_next/static/media/dana-fanum-black.a754839aa0d94b5134488da842a446ef.woff2) format('woff2');
+}
 
 .navItem {
     @apply cursor-pointer mx-4 border-primary border-solid

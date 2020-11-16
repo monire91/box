@@ -11,7 +11,7 @@ module.exports = {
             //     'dana-bold': ['dana-bold'],
             // },
             fontFamily: {
-                'sans': ['dana', 'Helvetica', 'Arial', 'sans-serif']
+                lobster: ['Lobster']
             },
             colors:{
                 primary: '#1388e6',

@@ -30,7 +30,6 @@ const Mobile = ({setPhoneNumber, phoneNumber,setStep}) => {
         <div>
             <div className="border-neutral  border rounded bg-white rounded-lg mb-4 p-4">
                 <p className='text-gray-700'>موبایل</p>
-                <p className='text-gray-700 myFirstFont'>sss</p>
                 <input
                     onChange={handleChange}
                     className="text-right w-full appearance-none text-gray-700 text-xl leading-tight focus:outline-none "

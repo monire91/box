@@ -48,7 +48,7 @@ function Login(props) {
                     </div>
                     <div className='sm:absolute fixed pl-10 xl:pr-40 pr-10 text-right pt-40 bg-white h-full w-full sm:w-2/5 left-0'>
                         <p className='pt-4 pb-4 text-4xl'>ورود</p>
-                        <p className='rtl mb-8 aaa'>تمام فیلد ها را به صورت صحیح وارد کنید.</p>
+                        <p className='rtl mb-8'>تمام فیلد ها را به صورت صحیح وارد کنید.</p>
                         <form>
                             {step === 0 &&
                             <Mobile setPhoneNumber={setPhoneNumber} phoneNumber={phoneNumber} setStep={setStep}/>}

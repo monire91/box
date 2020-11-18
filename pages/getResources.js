@@ -20,7 +20,6 @@ export const getTransactionTypes = () => {
         };
         const result = apiHelper(request);
         result.then(res => {
-            console.log('aaaaaa ',res)
             getTransactionTypes(res.data.data);
         }).catch(err => {
             console.log(err)
@@ -47,7 +46,7 @@ export const getUseTypes = () => {
         };
         const result = apiHelper(request);
         result.then(res => {
-            getUseTypes(res.data);
+            getUseTypes(res.data.data);
         }).catch(err => {
             console.log(err)
         });
@@ -72,7 +71,7 @@ export const getStates = () => {
         };
         const result = apiHelper(request);
         result.then(res => {
-            getStates(res.data);
+            getStates(res.data.data);
         }).catch(err => {
             console.log(err)
         });
@@ -97,7 +96,7 @@ export const getCities = () => {
         };
         const result = apiHelper(request);
         result.then(res => {
-            getCities(res.data);
+            getCities(res.data.data);
         }).catch(err => {
             console.log(err)
         });

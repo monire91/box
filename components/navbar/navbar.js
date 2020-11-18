@@ -1,9 +1,25 @@
 import Link from "next/link";
 import Profile from "../profile";
-import items from './navbarItems'
+import {items} from './navbarItems'
 
 export default function Navbar({page, activeItem}) {
+    const toggleNavbar = () => {
+        let modal = document.getElementById('myModal');
+        let navToggler = document.getElementById('navToggler');
+        let toggleNavbarClose = document.getElementById('toggleNavbarClose');
+        navToggler.style.display = "none";
+        toggleNavbarClose.style.display = "block";
+        modal.style.display = "block";
+    };
 
+    const toggleNavbarClose = () => {
+        let modal = document.getElementById('myModal');
+        let navToggler = document.getElementById('navToggler');
+        let toggleNavbarClose = document.getElementById('toggleNavbarClose');
+        navToggler.style.display = "block";
+        toggleNavbarClose.style.display = "none";
+        modal.style.display = "none";
+    };
     return (
         <nav className='py-4 w-full grid grid-cols-3 xl:grid-cols-4 absolute top-0 z-10'>
             <div className='col-span-1 xl:flex hidden justify-end items-center cursor-pointer'>
@@ -67,7 +83,14 @@ export default function Navbar({page, activeItem}) {
                 </div>
             </>}
 
-            <div className='xl:hidden px-4 justify-self-center cursor-pointer'>
+            <span id='toggleNavbarClose'
+                  onClick={toggleNavbarClose}
+                className='r-cancel hidden xl:hidden px-4 justify-self-center cursor-pointer text-white'/>
+
+            <div
+                id='navToggler'
+                onClick={toggleNavbar}
+                className='xl:hidden px-4 justify-self-center cursor-pointer'>
                 <div className='flex'>
                     <div
                         className={`rounded-r-full rounded-l-full  w-1 h-1 m-1 ${page === 'home' ? "bg-white" : "bg-primary"}`}/>

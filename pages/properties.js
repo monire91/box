@@ -2,7 +2,6 @@ import React from 'react';
 import Head from "next/head";
 import Navbar from "../components/navbar/navbar";
 import Asset from "../components/asset";
-import {useResources} from "../contexts/resources";
 
 const Properties = ({assets}) => {
 
@@ -29,8 +28,8 @@ const Properties = ({assets}) => {
     );
 };
 
-Properties.getInitialProps = async (ctx) => {
-    const res = await fetch('https://api2.subkhoone.com/api/assets')
+Properties.getInitialProps = async () => {
+    const res = await fetch('https://api2.subkhoone.com/api/assets');
     const json = await res.json();
 
     return {assets: json.data}

@@ -17,9 +17,9 @@ const Asset = ({asset}) => {
     };
 
     const getType = (arr, value) => {
-        const a = arr.find(item => item.id === value)
+        const a = arr.find(item => item.id === value);
         if(a!==undefined){
-            console.log(a.name)
+            // console.log(a.name)
             return a.name
         }
     };

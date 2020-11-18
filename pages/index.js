@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import Navbar from "../components/navbar/navbar";
+import Modal from "../components/modal";
 
 export default function Home() {
-
     return (
         <div>
             <Head>
@@ -11,6 +11,7 @@ export default function Home() {
             </Head>
 
             <main>
+                <Modal activeItem={4}/>
                 <Navbar page='home' activeItem={4}/>
                 <div className='relative'>
                     <img

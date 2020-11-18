@@ -1,14 +1,14 @@
 import {React, useState, useEffect} from 'react';
 import {useRouter} from 'next/router'
-import {getCities, getStates, getTransactionTypes, getUseTypes} from "../pages/getResources";
+import {useCities, useStates, useTransactionTypes, useUseTypes} from "../hooks/useResources";
 import {useResources} from "../contexts/resources";
 
 const Asset = ({asset}) => {
     const router = useRouter();
-    getTransactionTypes();
-    getUseTypes();
-    getStates();
-    getCities();
+    useTransactionTypes();
+    useUseTypes();
+    useStates();
+    useCities();
 
     const state = useResources();
     // console.log(state)
@@ -16,9 +16,12 @@ const Asset = ({asset}) => {
         router.push(`/properties/${asset.id}/secondary`)
     };
 
-
     const getType = (arr, value) => {
-        return arr.filter(item => item.id === value)
+        const a = arr.find(item => item.id === value)
+        if(a!==undefined){
+            console.log(a.name)
+            return a.name
+        }
     };
 
     return (state.transactionTypes !== undefined &&
@@ -38,7 +41,7 @@ const Asset = ({asset}) => {
                     <span
                         className='transition-all duration-300 ease-out rounded text-white p-2
                         text-xs bg-secondary absolute ml-6 mt-32 group-hover:opacity-0 transition
-                        transform group-hover:-translate-y-16'>{getType(state.transactionTypes, asset.market_status_id).name}</span>
+                        transform group-hover:-translate-y-16'>{getType(state.transactionTypes, asset.market_status_id)}</span>
                 </div>
 
             </div>

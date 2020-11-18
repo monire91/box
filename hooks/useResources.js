@@ -2,7 +2,7 @@ import {useDispatchCount} from "../contexts/resources";
 import apiHelper from "../apiHelper";
 import React, {useEffect} from 'react';
 
-export const getTransactionTypes = () => {
+export const useTransactionTypes = () => {
 
     const dispatch = useDispatchCount();
     const getTransactionTypes = (payload) => {
@@ -28,7 +28,7 @@ export const getTransactionTypes = () => {
     }, []);
 };
 
-export const getUseTypes = () => {
+export const useUseTypes = () => {
 
     const dispatch = useDispatchCount();
     const getUseTypes = (payload) => {
@@ -53,7 +53,7 @@ export const getUseTypes = () => {
     }, []);
 };
 
-export const getStates = () => {
+export const useStates = () => {
 
     const dispatch = useDispatchCount();
     const getStates = (payload) => {
@@ -78,7 +78,7 @@ export const getStates = () => {
     }, []);
 };
 
-export const getCities = () => {
+export const useCities = () => {
 
     const dispatch = useDispatchCount();
     const getCities = (payload) => {

@@ -21,7 +21,6 @@ const Mobile = ({setPhoneNumber, phoneNumber,setStep}) => {
                 setStep(prevState => prevState + 1);
                 localStorage.setItem('temp_token',res.data.data.temp_token)
             }
-
         }).catch(err => {
             console.log(err)
         })

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Profile from "../profile";
-import React, {useState} from "react";
 import items from './navbarItems'
 
 export default function Navbar({page, activeItem}) {

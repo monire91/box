@@ -10,7 +10,7 @@ export default function Navbar({page, activeItem}) {
         navToggler.style.display = "none";
         toggleNavbarClose.style.display = "block";
         modal.style.display = "block";
-    };
+      };
 
     const toggleNavbarClose = () => {
         let modal = document.getElementById('myModal');
@@ -21,11 +21,11 @@ export default function Navbar({page, activeItem}) {
         modal.style.display = "none";
     };
     return (
-        <nav className='py-4 w-full grid grid-cols-3 xl:grid-cols-4 absolute top-0 z-10'>
+        <nav className='py-4 w-full grid grid-cols-3 xl:grid-cols-5 absolute top-0 z-20'>
             <div className='col-span-1 xl:flex hidden justify-end items-center cursor-pointer'>
                 <span
-                    className='font-semibold bg-primary rounded-2xl h-16 w-56 text-white flex justify-center
-                    items-center'>ملک خود را ثبت کنید</span>
+                    className='bg-primary rounded-2xl h-16 w-56 text-white flex justify-center
+                    items-center dana'>ملک خود را ثبت کنید</span>
             </div>
             <div className='flex justify-start px-4 items-center text-2xl '>
                 <Profile page={page}/>
@@ -37,11 +37,12 @@ export default function Navbar({page, activeItem}) {
                     </a>
                 </Link>
             </div>
-            <ul className='xl:flex hidden justify-center items-center'>
+            <ul id='nav'
+                className='xl:flex hidden justify-center items-center col-span-2'>
                 {items.map((item, index) => {
                     return <Link key={index} href={`${item.url}`}>
                         <a>
-                            <li className={activeItem === index ? 'navItem-active' : 'navItem'}>
+                            <li className={`dana-black text-lg ${activeItem === index ? 'navItem-active' : 'navItem'}`}>
                                 {item.name}
                             </li>
                         </a>
@@ -90,7 +91,7 @@ export default function Navbar({page, activeItem}) {
             <div
                 id='navToggler'
                 onClick={toggleNavbar}
-                className='xl:hidden px-4 justify-self-center cursor-pointer'>
+                className='xl:hidden px-4 justify-self-center block cursor-pointer'>
                 <div className='flex'>
                     <div
                         className={`rounded-r-full rounded-l-full  w-1 h-1 m-1 ${page === 'home' ? "bg-white" : "bg-primary"}`}/>

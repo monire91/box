@@ -11,13 +11,20 @@ const Modal = (activeItem) => {
         window.onclick = function (event) {
             if (event.target === modal) {
                 modal.style.display = "none";
+                let toggleNavbarClose = document.getElementById('toggleNavbarClose');
+                toggleNavbarClose.style.display = "none"
+                let navToggler = document.getElementById('navToggler');
+
+                let intElemClientWidth = window.innerWidth ;
+                if(intElemClientWidth<1280){
+                    navToggler.style.display = "block"
+                }
             }
         }
     }, []);
 
     return (
-        <div id="myModal" className="modal">
-
+        <div id="myModal" className="modal z-20 fixed">
             <div className="modal-content rounded-2xl overflow-hidden">
                 <div className="pr-10 text-right">
                     {itemsCollapsed.map((item, index) => {

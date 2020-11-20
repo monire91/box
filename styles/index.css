@@ -76,25 +76,22 @@ input[type=number] {
 
 @tailwind utilities;
 
-/*@font-face {*/
-/*    font-family: "dana";*/
-/*    src: url("/fonts/eot/dana-fanum-black.eot") format("eot"),*/
-/*    url("/fonts/ttf/dana-fanum-black.ttf") format("ttf"),*/
-/*    url("/fonts/woff/dana-fanum-black.woff") format("woff"),*/
-/*    url("/fonts/woff2/dana-fanum-black.woff2") format("woff2"),*/
-/*}*/
-
-/*@font-face {*/
-/*    font-family: "dana-bold";*/
-/*    src: url("/fonts/eot/dana-fanum-bold.eot") format("eot"),*/
-/*    url("/fonts/ttf/dana-fanum-bold.ttf") format("ttf"),*/
-/*    url("/fonts/woff/dana-fanum-bold.woff") format("woff"),*/
-/*    url("/fonts/woff2/dana-fanum-bold.woff2") format("woff2"),*/
-/*}*/
+@font-face {
+    font-family: "dana";
+    src: url("/fonts/ttf/dana-fanum-regular.ttf")
+}
 
 @font-face {
-    font-family: 'Lobster';
-    src: url(https://subkhoone.com/_next/static/media/dana-fanum-black.a754839aa0d94b5134488da842a446ef.woff2) format('woff2');
+    font-family: "dana-black";
+    src: url("/fonts/ttf/dana-fanum-black.ttf")
+}
+
+.dana{
+    font-family: dana,serif;
+}
+
+.dana-black{
+    font-family: dana-black,serif;
 }
 
 .navItem {

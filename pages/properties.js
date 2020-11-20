@@ -2,6 +2,7 @@ import React from 'react';
 import Head from "next/head";
 import Navbar from "../components/navbar/navbar";
 import Asset from "../components/asset";
+import Modal from "../components/modal";
 
 const Properties = ({assets}) => {
 
@@ -12,6 +13,7 @@ const Properties = ({assets}) => {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <main className='mt-56 mb-56'>
+                <Modal activeItem={4}/>
                 <Navbar page='login' activeItem={3}/>
                 <div className='flex flex-wrap flex-row xl:justify-between justify-start justify-center'>
                     {assets.map((item, index) => {

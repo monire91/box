@@ -3,6 +3,7 @@ import {useCookies} from 'react-cookie';
 import {useAuth} from '../hooks/useAuth'
 import {useState} from "react";
 import APIHelper from '../apiHelper'
+import {numberWithCommas} from '../utils/Utils'
 
 export default function Profile({page}) {
     const [cookies, setCookie] = useCookies(['Authorization']);
@@ -51,10 +52,10 @@ export default function Profile({page}) {
 
     return (
         data && <div className='flex items-center'>
-            <div className='mr-4 text-right'>
+            <div className='mr-4 text-right dana'>
                 <span className='text-base'>{data.data.data.last_name}</span>
                 <span className='text-base inline-block ml-1'>{data.data.data.first_name}</span>
-                <p className='text-base text-right'>{data.data.data.balance}</p>
+                <p className='text-base text-right'>{numberWithCommas(data.data.data.balance)}</p>
             </div>
             <img className='w-12 h-12 rounded-full' src={`https://api2.subkhoone.com/${data.data.data.image_url}`}/>
         </div>

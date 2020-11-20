@@ -14,6 +14,8 @@ const reducer = (state, action) => {
             return {...state, states: action.payload};
         case 'GET_CITIES':
             return {...state, cities: action.payload};
+        case 'SET_ACTIVE_NAV_ITEM':
+            return {...state, activeNavItem: action.payload};
         default:
             throw new Error(`Unknown action: ${action.type}`)
     }

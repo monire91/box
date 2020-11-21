@@ -15,7 +15,7 @@ export const items = [
     },
     {
         name: 'املاک',
-        url: 'properties'
+        url: '/properties'
     },
     {
         name: 'خانه',
@@ -30,7 +30,7 @@ export const itemsCollapsed = [
     },
     {
         name: 'املاک',
-        url: 'properties'
+        url: '/properties'
     },
     {
         name: 'چراما',

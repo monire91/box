@@ -8,9 +8,12 @@ const Modal = (activeItem) => {
 
     useEffect(() => {
         const modal = document.getElementById('myModal');
+        const modal2 = document.getElementById('myModal2');
+
         window.onclick = function (event) {
-            if (event.target === modal) {
+            if (event.target === modal ||event.target === modal2) {
                 modal.style.display = "none";
+                modal2.style.display = "none";
                 let toggleNavbarClose = document.getElementById('toggleNavbarClose');
                 toggleNavbarClose.style.display = "none"
                 let navToggler = document.getElementById('navToggler');
@@ -25,7 +28,7 @@ const Modal = (activeItem) => {
 
     return (
         <div id="myModal" className="modal z-20 fixed">
-            <div className="modal-content rounded-2xl overflow-hidden">
+            <div className="modal-content rounded-2xl overflow-hidden modal-width-1">
                 <div className="pr-10 text-right">
                     {itemsCollapsed.map((item, index) => {
                         return <Link key={index} href={`${item.url}`}>

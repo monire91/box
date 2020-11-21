@@ -13,7 +13,8 @@ module.exports = {
               big:'40px'
             },
             height:{
-              tall:'300px'
+              tall:'300px',
+              taller:'400px'
             },
             width:{
                 medium:'300px',
@@ -25,6 +26,8 @@ module.exports = {
                 secondary: '#1abb9c',
                 neutral: '#ebebeb',
                 neutral1: '#c5c5c5',
+                neutral2: '#f2f5f8',
+                neutral3: '#f8fafb',
                 accent: '#ff4848',
             },
             inset: {

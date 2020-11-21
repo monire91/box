@@ -3,7 +3,7 @@ import {useRouter} from 'next/router'
 import {useCities, useStates, useTransactionTypes, useUseTypes} from "../hooks/useResources";
 import {useResources} from "../contexts/resources";
 
-const Asset = ({asset}) => {
+const Asset = ({asset,useType}) => {
     const router = useRouter();
     useTransactionTypes();
     useUseTypes();
@@ -54,7 +54,7 @@ const Asset = ({asset}) => {
                     <span
                         className='transition-all duration-300 ease-out rounded text-white p-2
                         text-xs bg-secondary absolute ml-6 mt-32 group-hover:opacity-0 transition
-                        transform group-hover:-translate-y-16 dana'>{getType(state.transactionTypes, asset.market_status_id)}</span>
+                        transform group-hover:-translate-y-16 dana'>{useType}</span>
                 </div>
 
             </div>

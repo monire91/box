@@ -6,27 +6,28 @@ import Modal from "../components/modal";
 
 const Properties = ({assets}) => {
 
-    const [data, setData] = useState([]);
+    const [Data, setData] = useState([]);
 
     const normalize = () => {
-        console.log(assets)
+            const data = [];
+            console.log(assets);
             assets.map((item, index) => {
                 if (item.present_primary_market_id != null) {
-                    // data.push({item: item, useType: 'primary'})
-                    setData(...data, {item: item, useType: 'primary'});
+                    data.push({item: item, useType: 'بازار اولیه'})
+                    // setData(...data, {item: item, useType: 'primary'});
                 }
                 if (item.present_secondary_market_id != null) {
-                    // data.push({item: item, useType: 'secondary'})
-                    setData(...data, {item: item, useType: 'secondary'});
+                    data.push({item: item, useType: 'بازار ثانویه'})
+                    // setData(...data, {item: item, useType: 'secondary'});
 
                 }
                 if (item.present_exit_market_id != null) {
-                    // data.push({item: item, useType: 'exit'})
-                    setData(...data, {item: item, useType: 'exit'});
-
+                    data.push({item: item, useType: 'بازار خروج'})
+                    // setData(...data, {item: item, useType: 'exit'});
                 }
             });
-            console.log(data)
+            // console.log(data)
+            setData(data)
         }
     ;
 
@@ -35,7 +36,7 @@ const Properties = ({assets}) => {
     }, []);
 
     return (
-        data.length>0 && <div>
+        Data.length > 0 && <div>
             <Head>
                 <title>subkhoone</title>
                 <link rel="icon" href="/favicon.ico"/>
@@ -44,9 +45,9 @@ const Properties = ({assets}) => {
                 <Modal activeItem={4}/>
                 <Navbar page='login' activeItem={3}/>
                 <div className='flex flex-wrap flex-row xl:justify-between justify-start justify-center'>
-                    {data.map((item, index) => {
+                    {Data.map((item, index) => {
                         console.log(item)
-                        // return <Asset key={index} asset={item.item}/>
+                        return <Asset key={index} asset={item.item} useType={item.useType}/>
                     })}
                 </div>
 

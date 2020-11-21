@@ -11,7 +11,6 @@ const Asset = ({asset,useType,path}) => {
     useCities();
 
     const state = useResources();
-    console.log(state)
     const handleClick = () => {
         router.push(`/properties/${asset.id}/${path}`)
     };

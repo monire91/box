@@ -1,11 +1,15 @@
 import React from 'react';
 import Head from "next/head";
 import Navbar from "../../../components/navbar/navbar";
-import Asset from "../../../components/asset";
 import Modal from "../../../components/modal";
 import Modal2 from "../../../components/modal2";
+import {useRouter} from 'next/router'
 
-const Type = () => {
+
+const Index = () => {
+    const router = useRouter();
+
+    console.log('aaa ',router.query.type);
 
     const openModal = () => {
         let modal = document.getElementById('myModal2');
@@ -171,4 +175,4 @@ const Type = () => {
     );
 };
 
-export default Type;
+export default Index;

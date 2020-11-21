@@ -11,7 +11,7 @@ import Name from "../../components/auth/name";
 //         method: 'POST',
 //         headers: {
 //             'Accept': 'application/json',
-//             'Content-Type': 'application/json'
+//             'Content-Index': 'application/json'
 //         },
 //         body: JSON.stringify({phone_number: "989104924319"})
 //     });

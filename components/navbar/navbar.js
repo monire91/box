@@ -32,7 +32,7 @@ export default function Navbar({page, activeItem}) {
                 <Link href={`#`}>
                     <a>
                         <span
-                            className={`r-search px-4 cursor-pointer hover:text-primary xl:text-black ${page === 'home' ? "text-white" : "text-primary"}`}
+                            className={`r-search sm:text-xl text-lg px-4 cursor-pointer hover:text-primary xl:text-black ${page === 'home' ? "text-white" : "text-primary"}`}
                         />
                     </a>
                 </Link>

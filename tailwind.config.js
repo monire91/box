@@ -16,12 +16,16 @@ module.exports = {
               tall:'300px'
             },
             width:{
-                tall:'400px'
+                medium:'300px',
+                tall:'400px',
+                taller:'500px'
             },
             colors: {
                 primary: '#1388e6',
                 secondary: '#1abb9c',
                 neutral: '#ebebeb',
+                neutral1: '#c5c5c5',
+                accent: '#ff4848',
             },
             inset: {
                 '1/2': '50%',

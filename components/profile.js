@@ -52,12 +52,15 @@ export default function Profile({page}) {
 
     return (
         data && <div className='flex items-center'>
-            <div className='mr-4 text-right dana'>
+            <div className='mr-4 text-right dana hidden md:block'>
                 <span className='text-base'>{data.data.data.last_name}</span>
                 <span className='text-base inline-block ml-1'>{data.data.data.first_name}</span>
-                <p className='text-base text-right'>{numberWithCommas(data.data.data.balance)}</p>
+                <p className='text-base text-xm text-right text-neutral1'>{numberWithCommas(data.data.data.balance)}</p>
             </div>
-            <img className='w-12 h-12 rounded-full' src={`https://api2.subkhoone.com/${data.data.data.image_url}`}/>
+            <div className='sm:w-12  w-8 '>
+                <img className='rounded-full h-full w-full'
+                     src={`https://api2.subkhoone.com/${data.data.data.image_url}`}/>
+            </div>
         </div>
     )
 }

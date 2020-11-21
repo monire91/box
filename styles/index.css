@@ -5,6 +5,10 @@
     direction: rtl;
 }
 
+.translateCenter{
+    transform: translateX(50%);
+}
+
 /* The Modal (background) */
 .modal {
     backdrop-filter: blur(10px);
@@ -67,6 +71,11 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.gradient{
+    background: transparent -webkit-linear-gradient(right,rgba(242,244,251,0),#f2f4fb 53%,rgba(242,244,251,0)) 0 0 no-repeat padding-box;
+    background: transparent linear-gradient(270deg,rgba(242,244,251,0),#f2f4fb 53%,rgba(242,244,251,0)) 0 0 no-repeat padding-box;
 }
 
 /* Firefox */

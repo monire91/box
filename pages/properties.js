@@ -13,16 +13,16 @@ const Properties = ({assets}) => {
             console.log(assets);
             assets.map((item, index) => {
                 if (item.present_primary_market_id != null) {
-                    data.push({item: item, useType: 'بازار اولیه'})
+                    data.push({item: item, useType: 'بازار اولیه', path: 'primary'})
                     // setData(...data, {item: item, useType: 'primary'});
                 }
                 if (item.present_secondary_market_id != null) {
-                    data.push({item: item, useType: 'بازار ثانویه'})
+                    data.push({item: item, useType: 'بازار ثانویه', path: 'secondary'})
                     // setData(...data, {item: item, useType: 'secondary'});
 
                 }
                 if (item.present_exit_market_id != null) {
-                    data.push({item: item, useType: 'بازار خروج'})
+                    data.push({item: item, useType: 'بازار خروج', path: 'exit'})
                     // setData(...data, {item: item, useType: 'exit'});
                 }
             });
@@ -47,7 +47,7 @@ const Properties = ({assets}) => {
                 <div className='flex flex-wrap flex-row xl:justify-between justify-start justify-center'>
                     {Data.map((item, index) => {
                         console.log(item)
-                        return <Asset key={index} asset={item.item} useType={item.useType}/>
+                        return <Asset key={index} asset={item.item} useType={item.useType} path={item.path}/>
                     })}
                 </div>
 

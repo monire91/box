@@ -3,7 +3,7 @@ import {useRouter} from 'next/router'
 import {useCities, useStates, useTransactionTypes, useUseTypes} from "../hooks/useResources";
 import {useResources} from "../contexts/resources";
 
-const Asset = ({asset,useType}) => {
+const Asset = ({asset,useType,path}) => {
     const router = useRouter();
     useTransactionTypes();
     useUseTypes();
@@ -13,26 +13,21 @@ const Asset = ({asset,useType}) => {
     const state = useResources();
     console.log(state)
     const handleClick = () => {
-        router.push(`/properties/${asset.id}/secondary`)
-    };
-
-    const getType = (arr, value) => {
-
-        return 'بازار اولیه'
+        router.push(`/properties/${asset.id}/${path}`)
     };
 
     const getUseType = (arr, value) => {
         if (arr.useTypes) {
-            let aa = ''
+            let value = '';
             arr.useTypes.forEach(element => {
                 for (let propt in element) {
 
                     if (element.id === value) {
-                        aa = element.name
+                        value = element.name
                     }
                 }
             });
-            return aa
+            return value
         }
     };
 

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Navbar from "../components/navbar/navbar";
-import Modal from "../components/modal";
+import Modal from "../components/modals/modal";
 
 export default function Home() {
     return (

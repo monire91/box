@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Head from "next/head";
 import Navbar from "../components/navbar/navbar";
 import Asset from "../components/asset";
-import Modal from "../components/modal";
+import Modal from "../components/modals/modal";
 
 const Properties = ({assets}) => {
 

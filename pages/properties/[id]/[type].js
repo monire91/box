@@ -1,59 +1,51 @@
 import React, {useEffect, useState} from 'react';
 import Head from "next/head";
 import Navbar from "../../../components/navbar/navbar";
-import Modal from "../../../components/modal";
-import Modal2 from "../../../components/modal2";
-import {useRouter} from 'next/router'
-import apiHelper from "../../../apiHelper";
-import Properties from "../../properties";
+import Modal from "../../../components/modals/modal";
+import Modal2 from "../../../components/modals/modal2";
+import Offers from "../../../components/offers";
+import MyOffers from "../../../components/myOffers";
 
+const AssetDetails = ({asset}) => {
 
-const Index = ({assets, id}) => {
-    const [Data, setData] = useState([]);
-    console.log("assets is: ", assets)
-    console.log("id is: ", id)
+    let endData = new Date(asset.present_primary_market.end_date_time);
+    const oneDay = 24 * 60 * 60 * 1000;
 
+    const numberOfDays = Math.round(endData / oneDay * 10) / 10;
+
+    const days = numberOfDays.toString().split(".")[0];
+    const hours = numberOfDays.toString().split(".")[1];
 
     const openModal = () => {
         let modal = document.getElementById('myModal2');
         modal.style.display = "block";
     };
-    //
-    // useEffect(() => {
-    //     console.log(router)
-    //     const request = {
-    //         method: 'GET',
-    //         url: `https://api2.subkhoone.com/api/assets/${router.query.id}`
-    //     };
-    //     const result = apiHelper(request);
-    //     result.then(res => {
-    //         console.log(res.data.data)
-    //         setData(res.data.data);
-    //
-    //     }).catch(err => {
-    //         console.log(err)
-    //     })
-    // }, []);
+
+    const [startDate, setStartDate] = useState('');
+    useEffect(() => {
+        let startData = new Date(asset.present_primary_market.start_date_time).toLocaleDateString('fa-IR');
+        setStartDate(startData);
+    }, []);
 
     return (
-        Data && <div>
+        <div>
             <Head>
                 <title>subkhoone</title>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <main>
                 <Modal activeItem={4}/>
-                <Modal2 activeItem={4}/>
+                <Modal2 id={asset.id} primaryID={asset.present_primary_market.id}/>
 
                 <Navbar page='login' activeItem={3}/>
-                <div className='grid  grid-cols-7 dana' style={{marginTop: 100}}>
-                    <div className='ml-20 col-span-2'>
+                <div className='grid grid-cols-7 dana' style={{marginTop: 100}}>
+                    <div className='lg:mx-20 mx-4 xl:mr-4 col-span-7 lg:col-span-7 xl:col-span-2'>
                         <div
                             className='w-full  text-sm border-2 rounded-3xl overflow-hidden border-gray-300 pt-4 pb-4 px-4'>
                             <div>
                                 <div className='flex justify-between relative mb-4'>
                                     <div className='rtl'>
-                                        <span>{Data.all_number_of_shares}</span>
+                                        <span>{asset.all_number_of_shares}</span>
                                         <span className='mr-1'>صاب</span>
                                     </div>
 
@@ -67,7 +59,7 @@ const Index = ({assets, id}) => {
                             <div>
                                 <div className='flex justify-between relative mb-4 mt-4'>
                                     <div className='rtl'>
-                                        <span>0</span>
+                                        <span>{asset.smallest_shares}</span>
                                         <span className='mr-1'>صاب</span>
                                     </div>
                                     <div>
@@ -80,7 +72,7 @@ const Index = ({assets, id}) => {
                             <div>
                                 <div className='flex justify-between relative mb-4 mt-4'>
                                     <div className='rtl'>
-                                        <span>0</span>
+                                        <span>{asset.largest_shares}</span>
                                         <span className='mr-1'>صاب</span>
                                     </div>
                                     <div>
@@ -93,7 +85,7 @@ const Index = ({assets, id}) => {
                             <div>
                                 <div className='flex justify-between relative mb-4 mt-4'>
                                     <div className='rtl'>
-                                        <span>0</span>
+                                        <span>{asset.number_of_contributors}</span>
                                     </div>
                                     <div>
                                         <span>تعداد مشارکت کننده ها</span>
@@ -105,7 +97,7 @@ const Index = ({assets, id}) => {
                             <div>
                                 <div className='flex justify-between relative mb-4 mt-4'>
                                     <div className='rtl'>
-                                        <span>10000</span>
+                                        <span>{asset.present_primary_market.low_price}</span>
                                     </div>
                                     <div>
                                         <span>کمترین قیمت قابل پیشنهاد</span>
@@ -117,7 +109,7 @@ const Index = ({assets, id}) => {
                             <div>
                                 <div className='flex justify-between relative mb-4 mt-4'>
                                     <div className='rtl'>
-                                        <span>1393/10/11</span>
+                                        <span>{startDate}</span>
                                     </div>
                                     <div>
                                         <span>تاریخ شروع فروش</span>
@@ -129,7 +121,7 @@ const Index = ({assets, id}) => {
                             <div>
                                 <div className='flex justify-between relative mb-4 mt-4'>
                                     <div className='rtl'>
-                                        <span>2151 روز 10 ساعت</span>
+                                        <span>{days} روز {hours} ساعت</span>
                                     </div>
                                     <div>
                                         <span>زمان اتمام فروش</span>
@@ -143,45 +135,17 @@ const Index = ({assets, id}) => {
                             className='cursor-pointer text-center rounded-2xl border-gray-300 w-full bg-accent text-white py-6 px-10 mt-8'>ثبت
                             پیشنهاد خرید
                         </div>
+
+                        <MyOffers marketID={asset.present_primary_market.id}/>
                     </div>
-                    <div className='col-span-5 pr-20 flex flex-col items-end'>
-                        <div className=' ml-10 overflow-hidden rounded-3xl object-cover h-taller'>
+                    <div
+                        className='col-span-7 lg:col-span-7 xl:mt-0 mt-20 xl:col-span-5 xl:pr-20 flex flex-col items-end'>
+                        <div className=' xl:ml-10 mx-auto overflow-hidden rounded-3xl object-cover h-taller'>
                             <img className='w-full' src='/img/1019-1000x600.jpg'/>
                         </div>
                         <h2 className='text-right text-neutral1 mt-20 mb-4'>بازار اولیه</h2>
-                        <h1 className='text-right dana-black text-3xl mb-20'>باشگاه کسب و کار دانش بنیان</h1>
-                        <div
-                            className='w-full mb-20 text-sm border-2 rounded-3xl overflow-hidden border-gray-300 pt-4 pb-4 px-4'>
-                            <div className='flex items-center justify-end'>
-                                <span className='dana-black text-sm '>پیشنهادات</span>
-                                <span className='r-money ml-4 leading-4'/>
-                            </div>
-
-                            <div className='grid grid-cols-4 mt-20'>
-                                <div className='text-center'>تجمعی</div>
-                                <div className='text-center'>قیمت <span className='text-neutral1'>(تومان)</span></div>
-                                <div className='text-center'>تعداد صاب</div>
-                                <div className='text-center mb-6'>تعداد افراد</div>
-                                <div className='col-span-4 bg-neutral2 grid grid-cols-4 font-bold py-6 rounded-lg'>
-                                    <p className='text-center rtl'>5105 <span>صاب</span></p>
-                                    <p className='text-center'>1000000000</p>
-                                    <p className='text-center rtl'>50 <span>صاب</span></p>
-                                    <p className='text-center'>1</p>
-                                </div>
-                                <div className='col-span-4 grid grid-cols-4 font-bold py-6  rounded-lg'>
-                                    <p className='text-center rtl'>5105 <span>صاب</span></p>
-                                    <p className='text-center'>1000000000</p>
-                                    <p className='text-center rtl'>50 <span>صاب</span></p>
-                                    <p className='text-center'>1</p>
-                                </div>
-                                <div className='col-span-4 grid grid-cols-4 bg-neutral3 text-neutral1 py-6  rounded-lg'>
-                                    <p className='text-center rtl'>5105 <span>صاب</span></p>
-                                    <p className='text-center'>1000000000</p>
-                                    <p className='text-center rtl'>50 <span>صاب</span></p>
-                                    <p className='text-center'>1</p>
-                                </div>
-                            </div>
-                        </div>
+                        <h1 className='text-right dana-black text-3xl mb-20'>{asset.name}</h1>
+                        <Offers assetID={asset.id}/>
                     </div>
                 </div>
 
@@ -193,12 +157,12 @@ const Index = ({assets, id}) => {
         </div>
     );
 };
-Index.getInitialProps = async (ctx) => {
-    const {id} = ctx.query
+AssetDetails.getInitialProps = async (ctx) => {
+    const {id} = ctx.query;
     const res = await fetch(`https://api2.subkhoone.com/api/assets/${id}`);
     const json = await res.json();
 
-    return {assets: json.data, id: id}
+    return {asset: json.data}
 };
 
-export default Index;
+export default AssetDetails;

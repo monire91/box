@@ -1,4 +1,3 @@
-import {React, useState, useEffect} from 'react';
 import {useRouter} from 'next/router'
 import {useCities, useStates, useTransactionTypes, useUseTypes} from "../hooks/useResources";
 import {useResources} from "../contexts/resources";

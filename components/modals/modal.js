@@ -1,10 +1,8 @@
 import React, {useEffect} from 'react';
-import {itemsCollapsed} from "./navbar/navbarItems";
+import {itemsCollapsed} from "../navbar/navbarItems";
 import Link from "next/link";
 
 const Modal = (activeItem) => {
-
-    console.log(activeItem)
 
     useEffect(() => {
         const modal = document.getElementById('myModal');

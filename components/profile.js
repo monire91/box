@@ -16,17 +16,13 @@ export default function Profile({page}) {
         };
         return APIHelper(request);
     };
-    const {data, error} = useAuth("/api/users/my", fetcher);
-
     const [open, setOpen] = useState(false);
     const toggle = () => {
         setOpen(!open)
     };
-
     const close = () => {
         setOpen(false)
     }
-
     const skeleton = <div className='relative'>
       <span
           onClick={toggle}
@@ -46,7 +42,9 @@ export default function Profile({page}) {
             </Link>
         </div>
     </div>;
+    if (cookies['Authorization'] === undefined) return skeleton
 
+    const {data, error} = useAuth("api/users/my", fetcher);
     if (error) return skeleton;
     if (!data) return skeleton;
 

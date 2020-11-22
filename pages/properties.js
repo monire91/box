@@ -12,7 +12,7 @@ const Properties = ({assets}) => {
 
     const normalize = () => {
             const data = [];
-            assets.map((item, index) => {
+            assets.map((item) => {
                 if(item.parent_id===null){
                     if (item.present_primary_market_id != null) {
                         data.push({item: item, useType: 'بازار اولیه', path: 'primary'})
@@ -29,10 +29,8 @@ const Properties = ({assets}) => {
                     }
                 }
             });
-            // console.log(data)
             setData(data)
-        }
-    ;
+        };
 
     useEffect(() => {
         normalize()

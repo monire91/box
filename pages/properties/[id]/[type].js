@@ -1,23 +1,42 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Head from "next/head";
 import Navbar from "../../../components/navbar/navbar";
 import Modal from "../../../components/modal";
 import Modal2 from "../../../components/modal2";
 import {useRouter} from 'next/router'
+import apiHelper from "../../../apiHelper";
+import Properties from "../../properties";
 
 
-const Index = () => {
-    const router = useRouter();
+const Index = ({assets, id}) => {
+    const [Data, setData] = useState([]);
+    console.log("assets is: ", assets)
+    console.log("id is: ", id)
 
-    console.log('aaa ',router.query.type);
 
     const openModal = () => {
         let modal = document.getElementById('myModal2');
         modal.style.display = "block";
     };
+    //
+    // useEffect(() => {
+    //     console.log(router)
+    //     const request = {
+    //         method: 'GET',
+    //         url: `https://api2.subkhoone.com/api/assets/${router.query.id}`
+    //     };
+    //     const result = apiHelper(request);
+    //     result.then(res => {
+    //         console.log(res.data.data)
+    //         setData(res.data.data);
+    //
+    //     }).catch(err => {
+    //         console.log(err)
+    //     })
+    // }, []);
 
     return (
-        <div>
+        Data && <div>
             <Head>
                 <title>subkhoone</title>
                 <link rel="icon" href="/favicon.ico"/>
@@ -34,7 +53,7 @@ const Index = () => {
                             <div>
                                 <div className='flex justify-between relative mb-4'>
                                     <div className='rtl'>
-                                        <span>2000</span>
+                                        <span>{Data.all_number_of_shares}</span>
                                         <span className='mr-1'>صاب</span>
                                     </div>
 
@@ -173,6 +192,13 @@ const Index = () => {
             </footer>
         </div>
     );
+};
+Index.getInitialProps = async (ctx) => {
+    const {id} = ctx.query
+    const res = await fetch(`https://api2.subkhoone.com/api/assets/${id}`);
+    const json = await res.json();
+
+    return {assets: json.data, id: id}
 };
 
 export default Index;

@@ -45,7 +45,7 @@ const Properties = ({assets}) => {
             <main className='mt-56 mb-56'>
                 <Modal activeItem={4}/>
                 <Navbar page='login' activeItem={3}/>
-                <div className='flex flex-wrap flex-row xl:justify-between justify-start justify-center'>
+                <div className='flex flex-wrap flex-row  justify-start justify-center'>
                     {Data.map((item, index) => {
                         console.log(item)
                         return <Asset key={index} asset={item.item} useType={item.useType} path={item.path}/>

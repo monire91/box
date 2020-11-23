@@ -28,6 +28,7 @@ module.exports = {
                 neutral1: '#c5c5c5',
                 neutral2: '#f2f5f8',
                 neutral3: '#f8fafb',
+                neutral4: '#f1f4fc',
                 accent: '#ff4848',
             },
             inset: {

@@ -7,3 +7,8 @@ export const isNumber = (num) => {
         return false;
     }
 };
+
+export const openModal = () => {
+    let modal = document.getElementById('myModal2');
+    modal.style.display = "block";
+};

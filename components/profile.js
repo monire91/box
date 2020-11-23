@@ -42,9 +42,10 @@ export default function Profile({page}) {
             </Link>
         </div>
     </div>;
-    if (cookies['Authorization'] === undefined) return skeleton
 
     const {data, error} = useAuth("api/users/my", fetcher);
+    if (cookies['Authorization'] === undefined) return skeleton
+
     if (error) return skeleton;
     if (!data) return skeleton;
 

@@ -5,23 +5,20 @@ import Modal from "../../../components/modals/modal";
 import Modal2 from "../../../components/modals/modal2";
 import Offers from "../../../components/offers";
 import MyOffers from "../../../components/myOffers";
+import {useCookies} from "react-cookie";
+import Link from "next/link";
+import {openModal} from "../../../utils/Utils";
 
 const AssetDetails = ({asset}) => {
 
     let endData = new Date(asset.present_primary_market.end_date_time);
     const oneDay = 24 * 60 * 60 * 1000;
-
     const numberOfDays = Math.round(endData / oneDay * 10) / 10;
-
     const days = numberOfDays.toString().split(".")[0];
     const hours = numberOfDays.toString().split(".")[1];
-
-    const openModal = () => {
-        let modal = document.getElementById('myModal2');
-        modal.style.display = "block";
-    };
-
+    const [cookies, setCookie] = useCookies(['Authorization']);
     const [startDate, setStartDate] = useState('');
+
     useEffect(() => {
         let startData = new Date(asset.present_primary_market.start_date_time).toLocaleDateString('fa-IR');
         setStartDate(startData);
@@ -130,13 +127,31 @@ const AssetDetails = ({asset}) => {
                                 </div>
                             </div>
                         </div>
-                        <div
-                            onClick={openModal}
-                            className='cursor-pointer text-center rounded-2xl border-gray-300 w-full bg-accent text-white py-6 px-10 mt-8'>ثبت
-                            پیشنهاد خرید
-                        </div>
 
-                        <MyOffers marketID={asset.present_primary_market.id}/>
+                        {
+                            cookies['Authorization'] === undefined &&
+                            <Link href={`/auth/login`}>
+                                <a>
+                                    <div
+                                        className='cursor-pointer text-center rounded-2xl
+                            border-gray-300 w-full bg-neutral4 text-primary dana text-sm font-bold py-8 px-10 mt-8'>
+                                        برای ثبت پیشنهاد ابتدا وارد شوید
+                                    </div>
+                                </a>
+                            </Link>
+                        }
+                        {
+                            cookies['Authorization'] !== undefined && <div>
+                                <div
+                                    onClick={openModal}
+                                    className='cursor-pointer text-center rounded-2xl
+                            border-gray-300 w-full bg-accent text-white py-6 px-10 mt-8'>ثبت
+                                    پیشنهاد خرید
+                                </div>
+
+                                <MyOffers marketID={asset.present_primary_market.id} assetID={asset.id}/>
+                            </div>
+                        }
                     </div>
                     <div
                         className='col-span-7 lg:col-span-7 xl:mt-0 mt-20 xl:col-span-5 xl:pr-20 flex flex-col items-end'>

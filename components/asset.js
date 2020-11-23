@@ -31,7 +31,7 @@ const Asset = ({asset,useType,path}) => {
 
     return (state.transactionTypes !== undefined &&
         <div onClick={handleClick}
-             className='cursor-pointer w-full sm-w-1/2 md:w-1/3 xl:w-1/5 ml-8 mr-10 mt-10 border-2 rounded-3xl overflow-hidden border-gray-300'>
+             className='cursor-pointer w-full sm-w-1/2 md:w-1/3 xl:w-1/5 mx-6 mt-10 border-2 rounded-3xl overflow-hidden border-gray-300'>
             <div className='overflow-hidden h-tall relative w-full group'>
                 <p className='w-full pr-6 pt-6 text-right absolute z-10 group-hover:text-primary dana-black'>{asset.name}</p>
                 <div

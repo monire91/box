@@ -1,6 +1,7 @@
 import apiHelper from "../../apiHelper";
 import {useCookies} from "react-cookie";
 import {useResources} from "../../contexts/resources";
+import {closeModal2} from "../../utils/Utils";
 
 const Modal2 = ({id, primaryID, setData, setInput, input}) => {
 
@@ -10,11 +11,6 @@ const Modal2 = ({id, primaryID, setData, setInput, input}) => {
         e.preventDefault();
         const num = parseInt(e.target.value);
         setInput({...input, [key]: num});
-    };
-
-    const closeModal = () => {
-        let modal = document.getElementById('myModal2');
-        modal.style.display = "none";
     };
 
     const data = useResources();
@@ -38,7 +34,7 @@ const Modal2 = ({id, primaryID, setData, setInput, input}) => {
             result.then(res => {
                 console.log('submit ', res);
                 setData(res.data.data);
-                closeModal()
+                closeModal2()
 
             }).catch(err => {
                 console.log(err)
@@ -62,7 +58,7 @@ const Modal2 = ({id, primaryID, setData, setInput, input}) => {
             result.then(res => {
                 console.log('edit offer  ', res);
                 setData(res.data.data);
-                closeModal()
+                closeModal2()
 
             }).catch(err => {
                 console.log(err)
@@ -75,7 +71,7 @@ const Modal2 = ({id, primaryID, setData, setInput, input}) => {
             <div className="modal-content rounded overflow-hidden w-4/5 xl:5/6">
                 <div className='p-4 flex space-between items-center'>
                     <span
-                        onClick={closeModal}
+                        onClick={closeModal2}
                         className='justify-self-start r-cancel text-xs'/>
                     <div>
                         <span className='text-2xl dana font-bold'>ثبت پیشنهاد</span>

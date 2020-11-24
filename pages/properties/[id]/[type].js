@@ -9,6 +9,7 @@ import {useCookies} from "react-cookie";
 import Link from "next/link";
 import {openModal} from "../../../utils/Utils";
 import {useDispatchCount} from "../../../contexts/resources";
+
 const AssetDetails = ({asset}) => {
 
     let endData = new Date(asset.present_primary_market.end_date_time);

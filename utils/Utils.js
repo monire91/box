@@ -14,7 +14,7 @@ export const openModal = () => {
 };
 
 
-export const closeModal = () => {
+export const closeModal2 = () => {
     let modal = document.getElementById('myModal2');
     modal.style.display = "none";
 };

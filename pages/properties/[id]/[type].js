@@ -8,7 +8,7 @@ import MyOffers from "../../../components/myOffers";
 import {useCookies} from "react-cookie";
 import Link from "next/link";
 import {openModal} from "../../../utils/Utils";
-
+import {useDispatchCount} from "../../../contexts/resources";
 const AssetDetails = ({asset}) => {
 
     let endData = new Date(asset.present_primary_market.end_date_time);
@@ -26,10 +26,20 @@ const AssetDetails = ({asset}) => {
         let startData = new Date(asset.present_primary_market.start_date_time).toLocaleDateString('fa-IR');
         setStartDate(startData);
     }, []);
-
+    const dispatch = useDispatchCount();
     const handleClick = () => {
-        openModal()
-        setInput({})
+        openModal();
+        setInput({});
+
+        const setAction = () => {
+            dispatch({
+                type: 'SET_ACTION',
+                payload: 'post'
+            });
+        };
+
+        setAction();
+
     };
 
     return (

@@ -12,3 +12,9 @@ export const openModal = () => {
     let modal = document.getElementById('myModal2');
     modal.style.display = "block";
 };
+
+
+export const closeModal = () => {
+    let modal = document.getElementById('myModal2');
+    modal.style.display = "none";
+};

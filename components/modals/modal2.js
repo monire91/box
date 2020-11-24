@@ -1,6 +1,7 @@
 import apiHelper from "../../apiHelper";
 import {useCookies} from "react-cookie";
 import {useState} from "react";
+import {useResources} from "../../contexts/resources";
 
 const Modal2 = ({id, primaryID, setData, setInput, input}) => {
 
@@ -17,29 +18,60 @@ const Modal2 = ({id, primaryID, setData, setInput, input}) => {
         modal.style.display = "none";
     };
 
+    const data = useResources();
+
     const handleSubmit = () => {
 
-        const request = {
-            data: {
-                "primary_offer": {
-                    "number_of_shares": input.number_of_shares,
-                    "price": input.price,
-                }
-            },
-            headers: {'Authorization': `Bearer ${cookies['Authorization']}`},
-            method: 'POST',
-            url: `https://api2.subkhoone.com/api/assets/${id}/primary_markets/${primaryID}/primary_offers`
-        };
+        console.log(data.action);
+        console.log('zzzz ',input);
 
-        const result = apiHelper(request);
-        result.then(res => {
-            console.log('submit ', res);
-            setData(res.data.data)
-            closeModal()
+        if (data.action === 'post') {
+            const request = {
+                data: {
+                    "primary_offer": {
+                        "number_of_shares": input.number_of_shares,
+                        "price": input.price,
+                    }
+                },
+                headers: {'Authorization': `Bearer ${cookies['Authorization']}`},
+                method: 'POST',
+                url: `https://api2.subkhoone.com/api/assets/${id}/primary_markets/${primaryID}/primary_offers`
+            };
 
-        }).catch(err => {
-            console.log(err)
-        })
+            const result = apiHelper(request);
+            result.then(res => {
+                console.log('submit ', res);
+                setData(res.data.data);
+                closeModal()
+
+            }).catch(err => {
+                console.log(err)
+            })
+        }
+
+        if (data.action === 'update') {
+            const request = {
+                data: {
+                    "primary_offer": {
+                        "number_of_shares": input.number_of_shares,
+                        "price": input.price,
+                    }
+                },
+                headers: {'Authorization': `Bearer ${cookies['Authorization']}`},
+                method: 'PATCH',
+                url: `https://api2.subkhoone.com/api/assets/${id}/primary_markets/${primaryID}/primary_offers/${input.id}`
+            };
+
+            const result = apiHelper(request);
+            result.then(res => {
+                console.log('edit offer  ', res);
+                setData(res.data.data);
+                closeModal()
+
+            }).catch(err => {
+                console.log(err)
+            })
+        }
     };
 
     return (

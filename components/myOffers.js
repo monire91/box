@@ -2,14 +2,22 @@ import React, {useEffect, useState} from 'react';
 import {useCookies} from "react-cookie";
 import APIHelper from "../apiHelper";
 import {openModal} from "../utils/Utils";
+import {useDispatchCount} from "../contexts/resources";
 
 const MyOffers = ({marketID, assetID, data, setData,setInput}) => {
 
     const [cookies, setCookie] = useCookies(['Authorization']);
-
+    const dispatch = useDispatchCount();
     const handleClick = () => {
         openModal();
-        setInput(data)
+        setInput(data);
+        const setAction = () => {
+            dispatch({
+                type: 'SET_ACTION',
+                payload: 'update'
+            });
+        };
+        setAction();
     };
 
     const deleteOffer = () => {

@@ -39,7 +39,7 @@ const Properties = ({assets}) => {
         };
 
     useEffect(() => {
-        normalize()
+        normalize();
         setNav();
     }, []);
 

@@ -2,12 +2,9 @@ import apiHelper from "../../apiHelper";
 import {useCookies} from "react-cookie";
 import {useState} from "react";
 
-const Modal2 = ({id, primaryID,setData }) => {
+const Modal2 = ({id, primaryID, setData, setInput, input}) => {
 
     const [cookies, setCookie] = useCookies(['Authorization']);
-
-    const [input, setInput] = useState({});
-
 
     const handleChange = (e, key) => {
         e.preventDefault();
@@ -37,7 +34,7 @@ const Modal2 = ({id, primaryID,setData }) => {
         const result = apiHelper(request);
         result.then(res => {
             console.log('submit ', res);
-           setData(res.data.data)
+            setData(res.data.data)
             closeModal()
 
         }).catch(err => {

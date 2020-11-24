@@ -3,12 +3,14 @@ import {useCookies} from "react-cookie";
 import APIHelper from "../apiHelper";
 import {openModal} from "../utils/Utils";
 
-const MyOffers = ({marketID, assetID, data, setData}) => {
+const MyOffers = ({marketID, assetID, data, setData,setInput}) => {
 
     const [cookies, setCookie] = useCookies(['Authorization']);
 
     const handleClick = () => {
         openModal()
+        console.log('yay ')
+        setInput(data)
     };
 
     const deleteOffer = () => {

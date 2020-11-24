@@ -1,37 +1,32 @@
 import apiHelper from "../../apiHelper";
 import {useCookies} from "react-cookie";
-import {isNumber} from '../../utils/Utils'
 
-const Modal2 = ({id,primaryID,setPrice,price,setNumberOfShares,numberOfShares}) => {
+const Modal2 = ({id, primaryID, data ,setData}) => {
 
     const [cookies, setCookie] = useCookies(['Authorization']);
 
+    const handleChange = (e, key) => {
+        e.preventDefault();
+        const num = parseInt(e.target.value);
+        setData({...data, [key]: num});
+    };
+
     const closeModal = () => {
+        setData({})
+
         let modal = document.getElementById('myModal2');
         modal.style.display = "none";
     };
 
-    const handleChange = (e, key) => {
-        e.preventDefault();
-
-        // if (isNumber(e.target.value)) {
-            if (key === 'price') {
-                const num = parseInt(e.target.value);
-                setPrice(num)
-            }
-            if (key === 'shares') {
-                const num = parseInt(e.target.value);
-                setNumberOfShares(num)
-            }
-        // }
-    };
+    console.log('data now  ', data);
 
     const handleSubmit = () => {
+
         const request = {
             data: {
                 "primary_offer": {
-                    "number_of_shares": numberOfShares,
-                    "price": price,
+                    "number_of_shares": data.numberOfShares,
+                    "price": data.price,
                 }
             },
             headers: {'Authorization': `Bearer ${cookies['Authorization']}`},
@@ -48,7 +43,6 @@ const Modal2 = ({id,primaryID,setPrice,price,setNumberOfShares,numberOfShares}) 
             console.log(err)
         })
     };
-
 
     return (
         <div id="myModal2" className="modal z-20 fixed dana">
@@ -67,21 +61,25 @@ const Modal2 = ({id,primaryID,setPrice,price,setNumberOfShares,numberOfShares}) 
                     <p className='text-xl dana font-bold text-center mb-12'>مشخص کردن ارقام</p>
                     <div className='grid grid-cols-8 '>
                         <span className='col-span-2 font-xs text-right place-self-center'>میلیون تومان</span>
+
+                        { console.log('data inline ', data)}
                         <input
                             onChange={(e) => {
                                 handleChange(e, 'price')
                             }}
                             type="number"
-                            placeholder={price}
+                            value={data.price !== undefined ? data.price : ''}
+                            placeholder={data.price !== undefined ? data.price : 0}
                             className="text-center dana h-20 w-4/5 place-self-center appearance-none text-gray-700 text-xl leading-tight focus:outline-none "
                         />
                         <span className='col-span-2 font-xs text-right place-self-center'>صاب به قیمت هر صاب</span>
                         <input
                             onChange={(e) => {
-                                handleChange(e, 'shares')
+                                handleChange(e, 'number_of_shares')
                             }}
                             type="number"
-                            placeholder={numberOfShares}
+                            placeholder={data.number_of_shares !== undefined ? data.number_of_shares : 0}
+                            value={data.number_of_shares !== undefined ? data.number_of_shares : ''}
                             className="text-center  h-20 place-self-center dana appearance-none w-4/5 text-gray-700 text-xl leading-tight focus:outline-none "
                         />
                         <span

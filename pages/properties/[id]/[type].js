@@ -20,7 +20,7 @@ const AssetDetails = ({asset}) => {
     const [startDate, setStartDate] = useState('');
     const [price, setPrice] = useState(0);
     const [numberOfShares, setNumberOfShares] = useState(0);
-
+    const [data, setData] = useState({});
 
     useEffect(() => {
         let startData = new Date(asset.present_primary_market.start_date_time).toLocaleDateString('fa-IR');
@@ -28,9 +28,8 @@ const AssetDetails = ({asset}) => {
     }, []);
 
     const handleClick = () => {
-        setPrice(0);
-        setNumberOfShares(0);
         openModal()
+
     };
 
     return (
@@ -41,9 +40,10 @@ const AssetDetails = ({asset}) => {
             </Head>
             <main>
                 <Modal activeItem={4}/>
-                <Modal2 id={asset.id} primaryID={asset.present_primary_market.id}
+                <Modal2 id={asset.id}
+                        primaryID={asset.present_primary_market.id}
                         setPrice={setPrice} price={price} setNumberOfShares={setNumberOfShares}
-                        numberOfShares={numberOfShares}/>
+                        numberOfShares={numberOfShares} setData={setData} data={data}/>
 
                 <Navbar page='login' activeItem={3}/>
                 <div className='grid grid-cols-7 dana' style={{marginTop: 100}}>
@@ -161,7 +161,8 @@ const AssetDetails = ({asset}) => {
                                 </div>
 
                                 <MyOffers marketID={asset.present_primary_market.id} assetID={asset.id}
-                                          setPrice={setPrice} setNumberOfShares={setNumberOfShares}/>
+                                          setPrice={setPrice} setNumberOfShares={setNumberOfShares} data={data}
+                                          setData={setData}/>
                             </div>
                         }
                     </div>

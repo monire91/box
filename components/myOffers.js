@@ -3,10 +3,9 @@ import {useCookies} from "react-cookie";
 import APIHelper from "../apiHelper";
 import {openModal} from "../utils/Utils";
 
-const MyOffers = ({marketID, assetID, setPrice,setNumberOfShares}) => {
+const MyOffers = ({marketID, assetID, setPrice, setNumberOfShares, data, setData}) => {
 
     const [cookies, setCookie] = useCookies(['Authorization']);
-    const [data, setData] = useState([]);
 
     const handleClick = () => {
         setPrice(data[0].price);
@@ -28,7 +27,7 @@ const MyOffers = ({marketID, assetID, setPrice,setNumberOfShares}) => {
         }).catch(err => {
             console.log(err)
         })
-    }
+    };
 
     useEffect(() => {
         const request = {
@@ -40,8 +39,9 @@ const MyOffers = ({marketID, assetID, setPrice,setNumberOfShares}) => {
         const result = APIHelper(request);
         result.then(res => {
             console.log('my offers  ', res);
-            setData(res.data.data)
-
+            if (res.data.data.length > 0) {
+                setData(res.data.data[0])
+            }
         }).catch(err => {
             console.log(err)
         })
@@ -50,7 +50,7 @@ const MyOffers = ({marketID, assetID, setPrice,setNumberOfShares}) => {
     }, []);
 
     return (
-        data.length > 0 &&
+        Object.keys(data).length !== 0 &&
         <div className='w-full mt-10 text-sm border-2 rounded-3xl overflow-hidden border-gray-300 pt-4 pb-4 px-4'>
             <div className='flex items-center justify-end p-2'>
                 <span className='dana-black text-sm '>پیشنهاد شما</span>
@@ -62,8 +62,8 @@ const MyOffers = ({marketID, assetID, setPrice,setNumberOfShares}) => {
                 <span className='dana text-sm text-center'>تعداد صاب</span>
             </div>
             <div className='col-span-4 bg-neutral2 grid grid-cols-2 font-bold py-6 rounded-lg'>
-                <p className='text-center'>{data[0].price}</p>
-                <p className='text-center rtl'>{data[0].number_of_shares}<span>صاب</span></p>
+                <p className='text-center'>{data.price}</p>
+                <p className='text-center rtl'>{data.number_of_shares}<span>صاب</span></p>
             </div>
             <p
                 onClick={handleClick}

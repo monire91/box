@@ -3,13 +3,11 @@ import {useCookies} from "react-cookie";
 import APIHelper from "../apiHelper";
 import {openModal} from "../utils/Utils";
 
-const MyOffers = ({marketID, assetID, setPrice, setNumberOfShares, data, setData}) => {
+const MyOffers = ({marketID, assetID, data, setData}) => {
 
     const [cookies, setCookie] = useCookies(['Authorization']);
 
     const handleClick = () => {
-        setPrice(data[0].price);
-        setNumberOfShares(data[0].number_of_shares);
         openModal()
     };
 
@@ -18,12 +16,13 @@ const MyOffers = ({marketID, assetID, setPrice, setNumberOfShares, data, setData
             data: {},
             method: 'DELETE',
             headers: {'Authorization': `Bearer ${cookies['Authorization']}`},
-            url: `https://api2.subkhoone.com/api/assets/${assetID}/primary_markets/${marketID}/primary_offers/${data[0].id}`
+            url: `https://api2.subkhoone.com/api/assets/${assetID}/primary_markets/${marketID}/primary_offers/${data.id}`
         };
 
         const result = APIHelper(request);
         result.then(res => {
             console.log('delete offers  ', res);
+            setData(res.data)
         }).catch(err => {
             console.log(err)
         })

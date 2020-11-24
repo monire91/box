@@ -29,7 +29,6 @@ const AssetDetails = ({asset}) => {
 
     const handleClick = () => {
         openModal()
-
     };
 
     return (

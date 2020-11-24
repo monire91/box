@@ -1,32 +1,32 @@
 import apiHelper from "../../apiHelper";
 import {useCookies} from "react-cookie";
+import {useState} from "react";
 
-const Modal2 = ({id, primaryID, data ,setData}) => {
+const Modal2 = ({id, primaryID,setData }) => {
 
     const [cookies, setCookie] = useCookies(['Authorization']);
+
+    const [input, setInput] = useState({});
+
 
     const handleChange = (e, key) => {
         e.preventDefault();
         const num = parseInt(e.target.value);
-        setData({...data, [key]: num});
+        setInput({...input, [key]: num});
     };
 
     const closeModal = () => {
-        setData({})
-
         let modal = document.getElementById('myModal2');
         modal.style.display = "none";
     };
-
-    console.log('data now  ', data);
 
     const handleSubmit = () => {
 
         const request = {
             data: {
                 "primary_offer": {
-                    "number_of_shares": data.numberOfShares,
-                    "price": data.price,
+                    "number_of_shares": input.number_of_shares,
+                    "price": input.price,
                 }
             },
             headers: {'Authorization': `Bearer ${cookies['Authorization']}`},
@@ -34,10 +34,11 @@ const Modal2 = ({id, primaryID, data ,setData}) => {
             url: `https://api2.subkhoone.com/api/assets/${id}/primary_markets/${primaryID}/primary_offers`
         };
 
-        console.log(request.url)
         const result = apiHelper(request);
         result.then(res => {
             console.log('submit ', res);
+           setData(res.data.data)
+            closeModal()
 
         }).catch(err => {
             console.log(err)
@@ -61,15 +62,13 @@ const Modal2 = ({id, primaryID, data ,setData}) => {
                     <p className='text-xl dana font-bold text-center mb-12'>مشخص کردن ارقام</p>
                     <div className='grid grid-cols-8 '>
                         <span className='col-span-2 font-xs text-right place-self-center'>میلیون تومان</span>
-
-                        { console.log('data inline ', data)}
                         <input
                             onChange={(e) => {
                                 handleChange(e, 'price')
                             }}
                             type="number"
-                            value={data.price !== undefined ? data.price : ''}
-                            placeholder={data.price !== undefined ? data.price : 0}
+                            value={input.price !== undefined ? input.price : ''}
+                            placeholder={input.price !== undefined ? input.price : 0}
                             className="text-center dana h-20 w-4/5 place-self-center appearance-none text-gray-700 text-xl leading-tight focus:outline-none "
                         />
                         <span className='col-span-2 font-xs text-right place-self-center'>صاب به قیمت هر صاب</span>
@@ -78,8 +77,8 @@ const Modal2 = ({id, primaryID, data ,setData}) => {
                                 handleChange(e, 'number_of_shares')
                             }}
                             type="number"
-                            placeholder={data.number_of_shares !== undefined ? data.number_of_shares : 0}
-                            value={data.number_of_shares !== undefined ? data.number_of_shares : ''}
+                            placeholder={input.number_of_shares !== undefined ? input.number_of_shares : 0}
+                            value={input.number_of_shares !== undefined ? input.number_of_shares : ''}
                             className="text-center  h-20 place-self-center dana appearance-none w-4/5 text-gray-700 text-xl leading-tight focus:outline-none "
                         />
                         <span

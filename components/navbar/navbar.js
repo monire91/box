@@ -1,8 +1,12 @@
 import Link from "next/link";
 import Profile from "../profile";
 import {items} from './navbarItems'
+import {useResources} from "../../contexts/resources";
 
-export default function Navbar({page, activeItem}) {
+export default function Navbar({page}) {
+
+    const data = useResources()
+
     const toggleNavbar = () => {
         let modal = document.getElementById('myModal');
         let navToggler = document.getElementById('navToggler');
@@ -42,7 +46,7 @@ export default function Navbar({page, activeItem}) {
                 {items.map((item, index) => {
                     return <Link key={index} href={`${item.url}`}>
                         <a>
-                            <li className={`dana-black text-lg ${activeItem === index ? 'navItem-active' : 'navItem'}`}>
+                            <li className={`dana-black text-lg ${data.activeNavItem === item.name ? 'navItem-active' : 'navItem'}`}>
                                 {item.name}
                             </li>
                         </a>

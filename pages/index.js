@@ -1,8 +1,22 @@
 import Head from 'next/head'
 import Navbar from "../components/navbar/navbar";
 import Modal from "../components/modals/modal";
+import {useDispatchCount} from "../contexts/resources";
+import {useEffect} from "react";
 
 export default function Home() {
+    const dispatch = useDispatchCount();
+    const setNav = () => {
+        dispatch({
+            type: 'SET_ACTIVE_NAV_ITEM',
+            payload: 'خانه'
+        });
+    };
+
+    useEffect(() => {
+        setNav();
+    }, []);
+
     return (
         <div>
             <Head>
@@ -11,8 +25,8 @@ export default function Home() {
             </Head>
 
             <main>
-                <Modal activeItem={4}/>
-                <Navbar page='home' activeItem={4}/>
+                <Modal/>
+                <Navbar page='home' />
                 <div className='relative'>
                     <img
                         alt='building'

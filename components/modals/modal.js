@@ -1,8 +1,11 @@
 import React, {useEffect} from 'react';
 import {itemsCollapsed} from "../navbar/navbarItems";
 import Link from "next/link";
+import {useResources} from "../../contexts/resources";
 
-const Modal = (activeItem) => {
+const Modal = () => {
+
+    const data = useResources();
 
     useEffect(() => {
         const modal = document.getElementById('myModal');
@@ -31,7 +34,7 @@ const Modal = (activeItem) => {
                     {itemsCollapsed.map((item, index) => {
                         return <Link key={index} href={`${item.url}`}>
                             <a>
-                                <p className={`pt-6 pb-6 ${activeItem === index ? 'text-primary' : 'navItem'}`}>
+                                <p className={`pt-6 pb-6 dana-black ${data.activeNavItem === item.name ? 'text-primary mx-4' : 'navItem'}`}>
                                     {item.name}
                                 </p>
                             </a>

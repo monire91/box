@@ -8,8 +8,7 @@ const MyOffers = ({marketID, assetID, data, setData,setInput}) => {
     const [cookies, setCookie] = useCookies(['Authorization']);
 
     const handleClick = () => {
-        openModal()
-        console.log('yay ')
+        openModal();
         setInput(data)
     };
 

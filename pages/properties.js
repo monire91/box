@@ -3,12 +3,18 @@ import Head from "next/head";
 import Navbar from "../components/navbar/navbar";
 import Asset from "../components/asset";
 import Modal from "../components/modals/modal";
+import {useDispatchCount,useResources} from "../contexts/resources";
 
 const Properties = ({assets}) => {
-
     const [Data, setData] = useState([]);
 
-    console.log(assets);
+    const dispatch = useDispatchCount();
+    const setNav = () => {
+        dispatch({
+            type: 'SET_ACTIVE_NAV_ITEM',
+            payload: 'املاک'
+        });
+    };
 
     const normalize = () => {
             const data = [];
@@ -34,6 +40,7 @@ const Properties = ({assets}) => {
 
     useEffect(() => {
         normalize()
+        setNav();
     }, []);
 
     return (
@@ -43,11 +50,10 @@ const Properties = ({assets}) => {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <main className='mt-56 mb-56'>
-                <Modal activeItem={4}/>
-                <Navbar page='login' activeItem={3}/>
+                <Modal/>
+                <Navbar page='login' />
                 <div className='flex flex-wrap flex-row  justify-start justify-center'>
                     {Data.map((item, index) => {
-                        console.log(item)
                         return <Asset key={index} asset={item.item} useType={item.useType} path={item.path}/>
                     })}
                 </div>

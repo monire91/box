@@ -18,7 +18,6 @@ const AssetDetails = ({asset}) => {
     const hours = numberOfDays.toString().split(".")[1];
     const [cookies, setCookie] = useCookies(['Authorization']);
     const [startDate, setStartDate] = useState('');
-    const [price, setPrice] = useState(0);
     const [numberOfShares, setNumberOfShares] = useState(0);
     const [data, setData] = useState({});
     const [input, setInput] = useState({});
@@ -32,9 +31,6 @@ const AssetDetails = ({asset}) => {
         openModal()
         setInput({})
     };
-
-    console.log('input ',input)
-
 
     return (
         <div>

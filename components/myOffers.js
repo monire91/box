@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useCookies} from "react-cookie";
 import APIHelper from "../apiHelper";
-import {openModal} from "../utils/Utils";
+import {numberWithCommas, openModal} from "../utils/Utils";
 import {useDispatchCount} from "../contexts/resources";
 
 const MyOffers = ({marketID, assetID, data, setData,setInput}) => {
@@ -70,7 +70,7 @@ const MyOffers = ({marketID, assetID, data, setData,setInput}) => {
                 <span className='dana text-sm text-center'>تعداد صاب</span>
             </div>
             <div className='col-span-4 bg-neutral2 grid grid-cols-2 font-bold py-6 rounded-lg'>
-                <p className='text-center'>{data.price}</p>
+                <p className='text-center'>{numberWithCommas(data.price*1000000)}</p>
                 <p className='text-center rtl'>{data.number_of_shares}<span>صاب</span></p>
             </div>
             <p

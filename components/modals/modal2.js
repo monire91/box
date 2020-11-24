@@ -1,6 +1,5 @@
 import apiHelper from "../../apiHelper";
 import {useCookies} from "react-cookie";
-import {useState} from "react";
 import {useResources} from "../../contexts/resources";
 
 const Modal2 = ({id, primaryID, setData, setInput, input}) => {
@@ -21,9 +20,6 @@ const Modal2 = ({id, primaryID, setData, setInput, input}) => {
     const data = useResources();
 
     const handleSubmit = () => {
-
-        console.log(data.action);
-        console.log('zzzz ',input);
 
         if (data.action === 'post') {
             const request = {

@@ -18,11 +18,20 @@ const AssetDetails = ({asset}) => {
     const hours = numberOfDays.toString().split(".")[1];
     const [cookies, setCookie] = useCookies(['Authorization']);
     const [startDate, setStartDate] = useState('');
+    const [price, setPrice] = useState(0);
+    const [numberOfShares, setNumberOfShares] = useState(0);
+
 
     useEffect(() => {
         let startData = new Date(asset.present_primary_market.start_date_time).toLocaleDateString('fa-IR');
         setStartDate(startData);
     }, []);
+
+    const handleClick = () => {
+        setPrice(0);
+        setNumberOfShares(0);
+        openModal()
+    };
 
     return (
         <div>
@@ -32,7 +41,9 @@ const AssetDetails = ({asset}) => {
             </Head>
             <main>
                 <Modal activeItem={4}/>
-                <Modal2 id={asset.id} primaryID={asset.present_primary_market.id}/>
+                <Modal2 id={asset.id} primaryID={asset.present_primary_market.id}
+                        setPrice={setPrice} price={price} setNumberOfShares={setNumberOfShares}
+                        numberOfShares={numberOfShares}/>
 
                 <Navbar page='login' activeItem={3}/>
                 <div className='grid grid-cols-7 dana' style={{marginTop: 100}}>
@@ -143,13 +154,14 @@ const AssetDetails = ({asset}) => {
                         {
                             cookies['Authorization'] !== undefined && <div>
                                 <div
-                                    onClick={openModal}
+                                    onClick={handleClick}
                                     className='cursor-pointer text-center rounded-2xl
                             border-gray-300 w-full bg-accent text-white py-6 px-10 mt-8'>ثبت
                                     پیشنهاد خرید
                                 </div>
 
-                                <MyOffers marketID={asset.present_primary_market.id} assetID={asset.id}/>
+                                <MyOffers marketID={asset.present_primary_market.id} assetID={asset.id}
+                                          setPrice={setPrice} setNumberOfShares={setNumberOfShares}/>
                             </div>
                         }
                     </div>

@@ -44,7 +44,7 @@ export default function Profile({page}) {
     </div>;
 
     const {data, error} = useAuth("api/users/my", fetcher);
-    if (cookies['Authorization'] === undefined) return skeleton
+    if (cookies['Authorization'] === undefined) return skeleton;
 
     if (error) return skeleton;
     if (!data) return skeleton;
@@ -54,7 +54,7 @@ export default function Profile({page}) {
             <div className='mr-4 text-right dana hidden md:block'>
                 <span className='text-base'>{data.data.data.last_name}</span>
                 <span className='text-base inline-block ml-1'>{data.data.data.first_name}</span>
-                <p className='text-base text-xm text-right text-neutral1'>{numberWithCommas(data.data.data.balance)}</p>
+                <p className={`text-base text-xm text-right ${page==='login'?'text-neutral1':'text-black'}`}>{numberWithCommas(data.data.data.balance)}</p>
             </div>
             <div className='sm:w-12  w-8 '>
                 <img className='rounded-full h-full w-full'

@@ -37,13 +37,14 @@ const Offers = ({assetID}) => {
 
                 {offers.map((item, index) => {
 
-                    const bgColor = index%2===0?'bg-neutral2': '';
+                    const bgColor = index % 2 === 0 ? 'bg-neutral2' : '';
 
-                    return <div key={index} className={`col-span-4 ${bgColor} grid grid-cols-4 font-bold py-6 rounded-lg`}>
+                    return <div key={index}
+                                className={`col-span-4 ${bgColor} grid grid-cols-4 font-bold py-6 rounded-lg`}>
                         <p className='text-center rtl'>5105<span>صاب</span></p>
                         <p className='text-center'>{item.price}</p>
                         <p className='text-center rtl'>{item.number_of_shares}<span>صاب</span></p>
-                        <p className='text-center'>{index+1}</p>
+                        <p className='text-center'>{index + 1}</p>
                     </div>
                 })}
             </div>

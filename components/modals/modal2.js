@@ -1,15 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {itemsCollapsed} from "../navbar/navbarItems";
-import Link from "next/link";
 import apiHelper from "../../apiHelper";
 import {useCookies} from "react-cookie";
 import {isNumber} from '../../utils/Utils'
 
-const Modal2 = ({id,primaryID}) => {
+const Modal2 = ({id,primaryID,setPrice,price,setNumberOfShares,numberOfShares}) => {
 
     const [cookies, setCookie] = useCookies(['Authorization']);
-    const [numberOfShares, setNumberOfShares] = useState(0);
-    const [price, setPrice] = useState(0);
 
     const closeModal = () => {
         let modal = document.getElementById('myModal2');

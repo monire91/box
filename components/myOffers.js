@@ -3,17 +3,18 @@ import {useCookies} from "react-cookie";
 import APIHelper from "../apiHelper";
 import {openModal} from "../utils/Utils";
 
-const MyOffers = ({marketID, assetID}) => {
+const MyOffers = ({marketID, assetID, setPrice,setNumberOfShares}) => {
 
     const [cookies, setCookie] = useCookies(['Authorization']);
     const [data, setData] = useState([]);
 
     const handleClick = () => {
+        setPrice(data[0].price);
+        setNumberOfShares(data[0].number_of_shares);
         openModal()
-    }
+    };
 
     const deleteOffer = () => {
-
         const request = {
             data: {},
             method: 'DELETE',
@@ -21,7 +22,6 @@ const MyOffers = ({marketID, assetID}) => {
             url: `https://api2.subkhoone.com/api/assets/${assetID}/primary_markets/${marketID}/primary_offers/${data[0].id}`
         };
 
-        console.log('zzzzz',request.url)
         const result = APIHelper(request);
         result.then(res => {
             console.log('delete offers  ', res);
@@ -53,7 +53,7 @@ const MyOffers = ({marketID, assetID}) => {
         data.length > 0 &&
         <div className='w-full mt-10 text-sm border-2 rounded-3xl overflow-hidden border-gray-300 pt-4 pb-4 px-4'>
             <div className='flex items-center justify-end p-2'>
-              دح  <span className='dana-black text-sm '>پیشنهاد شما</span>
+                <span className='dana-black text-sm '>پیشنهاد شما</span>
                 <span className='r-money ml-4 leading-4'/>
             </div>
 
